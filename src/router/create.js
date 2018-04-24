@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export function createRouter() {
-  let router = new Router({
+  return new Router({
     mode: 'history',
     scrollBehavior: () => ({
       y: 0
@@ -17,20 +17,30 @@ export function createRouter() {
       {
         path: '/home',
         name: 'home',
-        component: () => import ('@/views/Home')
+        component: () => import('@/views/Home')
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login')
+      },
+      {
+        path: '/logout',
+        name: 'logout',
+        component: () => import('@/views/Logout')
       },
       {
         path: '/about',
         name: 'about',
-        component: () => import ('@/views/About'),
+        component: () => import('@/views/About'),
+        meta: {
+          requiresAuth: true
+        },
       },
       {
         path: '/video/live/:roomId/:productId',
         name: 'video-live-one',
         component: () => import('@/views/About'),
-        meta: {
-          requiresAuth: true
-        },
         props: true
       },
       {
@@ -40,9 +50,6 @@ export function createRouter() {
             path: 'live',
             name: 'video-live',
             component: () => import('@/views/About'),
-            meta: {
-              requiresAuth: true
-            }
           },
           {
             path: '',
@@ -59,22 +66,4 @@ export function createRouter() {
       }
     ]
   })
-
-  router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-      // this route requires auth, check if logged in
-      // if not, redirect to login page.
-      if (true) {
-        next({
-          path: '/login',
-          query: { redirect: to.fullPath }
-        })
-      } else {
-        next()
-      }
-    } else {
-      next() // make sure to always call next()!
-    }
-  })
-  return router
 }

@@ -15,9 +15,6 @@ $loading-z-index : 1000;
 $modal-z-index : 1100;
 $side-menu-z-index : 900;
 
-$put-color: #66ba5c;
-$call-color: #e05453;
-
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;

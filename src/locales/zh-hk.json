@@ -1,0 +1,48 @@
+{
+  "lang": {
+    "hk": "繁",
+    "cn": "简",
+    "en": "Eng"
+  },
+  "header": {
+    "title": "Vue Project"
+  },
+  "message": {
+    "welcome": "歡迎",
+    "please-login": "請先登錄",
+    "close": "關閉"
+  },
+  "side-menu": {
+    "section": {
+      "content": "內容",
+      "tools": "工具",
+      "more": "更多"
+    },
+    "links": {
+      "login": "登錄/註冊",
+      "alert": "提醒",
+      "news": "新聞",
+      "bookmarks": "收藏列表",
+      "setting": "設置",
+      "privacy": "私隱及免責聲明",
+      "exit": "離開"
+    }
+  },
+  "signin": {
+    "login": "登入",
+    "signup": "註冊",
+    "username": "用戶名稱",
+    "password": "密碼",
+    "email": "電郵"
+  },
+  "setting": {
+    "lang": "語言",
+    "version": "應用程式版本"
+  },
+  "footer-menu": {
+    "home": "Home",
+    "component": "Component",
+    "news": "新聞",
+    "video": "影片"
+  }
+}

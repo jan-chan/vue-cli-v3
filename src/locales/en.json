@@ -1,0 +1,48 @@
+{
+  "lang": {
+    "hk": "繁",
+    "cn": "简",
+    "en": "Eng"
+  },
+  "header": {
+    "title": "Vue Project"
+  },
+  "message": {
+    "welcome": "Welcome",
+    "please-login": "Please log in first",
+    "close": "Close"
+  },
+  "side-menu": {
+    "section": {
+      "content": "Content",
+      "tools": "Tools",
+      "more": "More"
+    },
+    "links": {
+      "login": "Login/Registration",
+      "alert": "Remind",
+      "news": "News",
+      "bookmarks": "Favorites List",
+      "setting": "Settings",
+      "privacy": "Privacy and Disclaimer",
+      "exit": "Leaving"
+    }
+  },
+  "signin": {
+    "login": "Login",
+    "signup": "Registration",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email"
+  },
+  "setting": {
+    "lang": "Language",
+    "version": "Application version"
+  },
+  "footer-menu": {
+    "home": "Home",
+    "component": "Component",
+    "news": "News",
+    "video": "Video"
+  }
+}

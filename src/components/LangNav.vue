@@ -1,7 +1,8 @@
 <template>
 <nav>
   <div @click="setLang('en')" :class="{active: activeLang === 'en'}">ENG</div> |
-  <div @click="setLang('hk')" :class="{active: activeLang === 'hk'}">HK</div>
+  <div @click="setLang('hk')" :class="{active: activeLang === 'hk'}">HK</div> |
+  <div @click="setLang('cn')" :class="{active: activeLang === 'cn'}">CN</div>
 </nav>
 </template>
 
@@ -15,24 +16,23 @@ export default {
   },
   methods: {
     setLang(lang) {
-      this.$store.dispatch('app/setLang', { lang: lang });
+      this.$i18n.locale = lang
+      this.$store.dispatch('app/setLang', { lang: lang })
     }
-  },
-  mounted() {
   }
 };
 </script>
 
 <style scoped lang="scss">
-@import '~@/style/vars.scss';
+@import '~@/assets/styles/vars.scss';
 
 nav > div {
   display: inline-block;
   cursor: pointer;
+  font-weight: bold;
   color: $font-color;
   &.active {
     color: $main-color;
-    font-weight: bold;
   }
 }
 </style>

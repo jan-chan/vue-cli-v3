@@ -1,18 +1,15 @@
 <template>
-<div id="view-home">
-  <img src="../assets/logo.png">
-  <hello-world msg="Welcome to Your Vue.js App" />
+<div class="view" id="view-home">
+  <img src="@/assets/images/logo.png">
+  <message-box msg="I'm a message box" />
 </div>
 </template>
 
 <script>
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    'hello-world': () => import('@/components/HelloWorld')
-  },
-  mounted() {
-    console.log(process.env.VUE_APP_DEBUG);
+    'message-box': () => import('@/components/MessageBox')
   }
 };
 </script>

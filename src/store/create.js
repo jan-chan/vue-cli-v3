@@ -2,21 +2,23 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import moduleApp from './app.module'
+import moduleMember from './member.module'
 
 Vue.use(Vuex)
 
 export function createStore() {
   return new Vuex.Store({
     state: {
-      login: false,
+      rootTest: false,
     },
     getters: {
-      login: state => {
-        return state.login
+      rootTest: state => {
+        return state.rootTest
       },
     },
     modules: {
-      app: moduleApp
+      app: moduleApp,
+      member: moduleMember,
     }
   })
 }

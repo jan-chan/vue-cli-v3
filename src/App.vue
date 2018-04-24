@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+  <div ref="debugId" v-show="false">{{ debugId }}</div>
   <top-nav/>
   <router-view/>
 </div>
@@ -8,25 +9,36 @@
 <script>
 export default {
   name: 'app',
+  data() {
+    return {
+      debugId: 1234
+    }
+  },
   components: {
-    'top-nav': () => import('@/components/TopNav')
+    'top-nav': () => import ('@/components/TopNav')
+  },
+  created() {
+    this.$i18n.locale = this.$store.getters['app/activeLang'];
+  },
+  mounted() {
+    // console.log(process.env.VUE_APP_DEBUG);
   }
 };
 </script>
 
 <style>
-@import '~@/style/common.css';
+@import '~@/assets/styles/common.css';
 </style>
 
 <style lang="scss">
 $variable-name: red;
 #app {
-  --h3-color: #{$variable-name};
+  --h1-color: #{$variable-name};
 }
 </style>
 
 <style scoped lang="scss">
-@import '~@/style/vars.scss';
+@import '~@/assets/styles/vars.scss';
 
 #app {
   font-family: "Avenir", "Helvetica", "Arial", "sans-serif";
