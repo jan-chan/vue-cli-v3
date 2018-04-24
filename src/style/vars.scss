@@ -1,0 +1,109 @@
+$main-color : #42b983;
+$bg-color : #000;
+$font-color : #2c3e50;
+$dim-color : #aaa;
+
+$ios-head-height: 20px;
+$head-bar-height: 60px;
+$head-bar-top-height : 40px;
+$foot-bar-height: 50px;
+$side-menu-width : 250px;
+
+$white-top-z-index : 1;
+$head-bar-z-index : 800;
+$loading-z-index : 1000;
+$modal-z-index : 1100;
+$side-menu-z-index : 900;
+
+$put-color: #66ba5c;
+$call-color: #e05453;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin rotateAll($ang) {
+  -webkit-transform: rotate($ang);
+      -ms-transform: rotate($ang);
+          transform: rotate($ang);
+}
+
+@mixin triangle_old($size, $color) {
+  display: block;
+  content: '';
+  position: relative;
+  width: 0;
+  left: 50%;
+  margin-top: 5px;
+  margin-left: -$size;
+  border-left: $size outset transparent;
+  border-right: $size solid transparent;
+  border-bottom: $size solid $color;
+}
+
+@mixin triangle($size, $color) {
+  content: "";
+  position: absolute;
+  border-width: $size;
+  margin-left: -$size;
+  bottom: -$size;
+  left: 50%;
+  border-style: solid;
+  transform: rotate(135deg);
+  border-color: transparent transparent $color $color;
+}
+
+@mixin hMinus($minus) {
+  @include heightMinus('100%', $minus);
+}
+@mixin vhMinus($minus) {
+  @include heightMinus(100vh, $minus);
+}
+@mixin heightMinus($height, $minus) {
+  @include calcH('height', '#{$height} - #{$minus}');
+  /*
+  height: -o-calc(#{$height} - #{$minus});
+  height: -webkit-calc(#{$height} - #{$minus});
+  height: -moz-calc(#{$height} - #{$minus});
+  */
+}
+@mixin calcH($prop, $value) {
+  #app:not(.ios) & {
+    #{$prop}: calc(#{$value});
+  }
+  #app.ios & {
+    #{$prop}: calc(#{$value} - #{$ios-head-height});
+  }
+}
+
+%childbox {
+  display: inline-block;
+  vertical-align: middle;
+  /* reset the font property */
+  /* font: 16px/1 Arial, sans-serif;  */
+}
+
+%parentbox {
+  text-align: center;
+  /* remove the gap between inline(-block) elements */
+  /* font: 0/0 a; */
+  &:before {
+    /* create a full-height inline block pseudo-element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+}
+
+.parentbox > * {
+  @extend %childbox;
+}
