@@ -25,6 +25,7 @@ export function login(data, callbackOk, callbackFail) {
   }
 }
 export function logout(data, callbackOk, callbackFail) {
+  // eslint-disable-next-line
   if (true) {
     callbackOk(data)
   } else {

@@ -14,7 +14,8 @@ export default {
   },
   actions: {
     setLang: ({ commit, state }, { lang }) => {
-      // console.log(state)
+      // eslint-disable-next-line
+      false ? state : null;
       commit('setLang', { lang })
     },
     setLogin: ({ commit }, { login }) => {
@@ -23,8 +24,8 @@ export default {
   },
   getters: {
     activeLang: (state, getters, rootState, rootGetters) => {
-      // console.log(rootState)
-      // console.log(rootGetters)
+      // eslint-disable-next-line
+      false ? { rootState, rootGetters } : null;
       return state.lang
     },
     loggedIn: (state) => {
