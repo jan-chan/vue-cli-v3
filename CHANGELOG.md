@@ -3,3 +3,4 @@
 - Create CHANGELOG.md
 - Update README.md
 - Fix typo in src/main.js
+- Add Travis CI
