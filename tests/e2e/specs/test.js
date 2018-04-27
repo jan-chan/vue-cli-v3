@@ -1,8 +1,15 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe('My First Test', () => {
-  it('Visits the Kitchen Sink', () => {
+describe('Home page title Test', () => {
+  it('Visits on Home page', () => {
     cy.visit('/')
-    cy.contains('h1', 'Welcome to Your Vue.js App')
+    cy.title().should('eq', 'v3')
+  })
+})
+
+describe('Home page MessageBox Test', () => {
+  it('Visits on Home page', () => {
+    cy.visit('/')
+    cy.contains('h1', "I'm a message box")
   })
 })
