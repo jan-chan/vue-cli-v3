@@ -4,3 +4,4 @@
 - Update README.md
 - Fix typo in src/main.js
 - Add Travis CI
+- Add simple test (unit & e2e)
