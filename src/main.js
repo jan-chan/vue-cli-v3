@@ -3,7 +3,7 @@
 // const { app, router, store } = createApp()
 // app.$mount('#app')
 
-// Advanced wat to create app
+// Advanced way to create app
 import Vue from 'vue'
 import { createApp } from './createApp'
 
