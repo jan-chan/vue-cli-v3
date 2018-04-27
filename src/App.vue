@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <div ref="debugId" v-show="false">{{ debugId }}</div>
+  <div id="debugId" ref="debugId" v-show="false">{{ debugId }}</div>
   <top-nav/>
   <router-view/>
 </div>

@@ -13,3 +13,10 @@ describe('Home page MessageBox Test', () => {
     cy.contains('h1', "I'm a message box")
   })
 })
+
+describe('Home page data Test', () => {
+  it('Visits on Home page', () => {
+    cy.visit('/')
+    cy.contains('#debugId', "1234")
+  })
+})
