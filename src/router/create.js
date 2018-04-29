@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-export function createRouter() {
+export function createRouter({ ...Components }) {
   return new Router({
     mode: 'history',
     scrollBehavior: () => ({
@@ -33,7 +33,7 @@ export function createRouter() {
       {
         path: '/about',
         name: 'about',
-        component: () => import('@/views/About'),
+        component: Components.About || (() => import('@/views/About')),
         meta: {
           requiresAuth: true,
         },
