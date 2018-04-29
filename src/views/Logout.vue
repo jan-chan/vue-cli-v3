@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import { createLib } from '@/libs/login'
+import { createLib } from '@/libs/login';
 export default {
   name: 'logout',
   created() {
-    createLib(this).logout()
-  }
+    createLib(this).logout();
+  },
 };
 </script>

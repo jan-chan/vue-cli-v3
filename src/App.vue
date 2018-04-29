@@ -11,18 +11,18 @@ export default {
   name: 'app',
   data() {
     return {
-      debugId: 1234
-    }
+      debugId: 1234,
+    };
   },
   components: {
-    'top-nav': () => import ('@/components/TopNav')
+    'top-nav': () => import('@/components/TopNav'),
   },
   created() {
     this.$i18n.locale = this.$store.getters['app/activeLang'];
   },
   mounted() {
     // console.log(process.env.VUE_APP_DEBUG);
-  }
+  },
 };
 </script>
 
@@ -41,7 +41,7 @@ $variable-name: red;
 @import '~@/assets/styles/vars.scss';
 
 #app {
-  font-family: "Avenir", "Helvetica", "Arial", "sans-serif";
+  font-family: 'Avenir', 'Helvetica', 'Arial', 'sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

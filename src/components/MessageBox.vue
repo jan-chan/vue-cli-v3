@@ -8,8 +8,8 @@
 export default {
   name: 'message-box',
   props: {
-    msg: String
-  }
+    msg: String,
+  },
 };
 </script>
 

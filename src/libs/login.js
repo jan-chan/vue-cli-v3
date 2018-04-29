@@ -1,74 +1,82 @@
-import Vue from 'vue'
-import * as api from '@/libs/member'
+import Vue from 'vue';
+import * as api from '@/libs/member';
 
 export function checkLogin(app, to, from, next) {
-  if ((to.matched.some(record => record.meta.requiresAuth)) && (!app.$store.getters['app/loggedIn'])) {
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !app.$store.getters['app/loggedIn']
+  ) {
     next({
       path: '/login',
       query: {
-        redirect: to.fullPath
-      }
-    })
+        redirect: to.fullPath,
+      },
+    });
     return;
   }
-  next()
+  next();
 }
 //
 export function createLib(owner) {
   return new Vue({
     data() {
       return {
-        owner: owner
-      }
+        owner: owner,
+      };
     },
     methods: {
       setMemberInfo(data) {
-        console.log('setMemberInfo')
-        this.owner.$store.dispatch('member/setInfo', data)
+        console.log('setMemberInfo');
+        this.owner.$store.dispatch('member/setInfo', data);
       },
       //
       login(data, auto) {
-        api.login(data, auto ? this.loginOkAuto : this.loginOk, auto ? this.loginFailAuto : this.loginFail)
+        api.login(
+          data,
+          auto ? this.loginOkAuto : this.loginOk,
+          auto ? this.loginFailAuto : this.loginFail
+        );
       },
       logout() {
-        api.logout({}, this.logoutOk, this.logoutFail)
+        api.logout({}, this.logoutOk, this.logoutFail);
       },
       loginOk(data, auto) {
-        console.log('loginOk')
-        this.owner.$store.dispatch('app/setLogin', { login: true })
-          .then(() => {
-            api.getInfo(data, this.setMemberInfo, function(data) { console.log(data) })
-            if (!auto) {
-              this.owner.$router.push(data.redirect || '/')
-            }
-          })
+        console.log('loginOk');
+        this.owner.$store.dispatch('app/setLogin', { login: true }).then(() => {
+          api.getInfo(data, this.setMemberInfo, function(data) {
+            console.log(data);
+          });
+          if (!auto) {
+            this.owner.$router.push(data.redirect || '/');
+          }
+        });
       },
       loginFail(data, auto) {
-        console.log('loginFail')
+        console.log('loginFail');
         if (!auto) {
-          alert(data.msg)
+          alert(data.msg);
         } else {
-          console.log(data)
+          console.log(data);
         }
       },
       logoutOk(data) {
-        console.log('logoutOk')
-        console.log(data)
-        this.owner.$store.dispatch('app/setLogin', { login: false })
-        this.owner.$store.dispatch('member/clearInfo')
-        this.owner.$router.push('/')
+        console.log('logoutOk');
+        console.log(data);
+        this.owner.$store.dispatch('app/setLogin', { login: false });
+        this.owner.$store.dispatch('member/clearInfo');
+        this.owner.$router.push('/');
       },
       logoutFail(data) {
-        console.log('logoutFail')
-        console.log(data)
-        this.owner.$router.push('/')
+        console.log('logoutFail');
+        console.log(data);
+        this.owner.$router.push('/');
       },
       loginOkAuto(data) {
-        this.loginOk(data, true)
+        this.loginOk(data, true);
       },
       loginFailAuto(data) {
-        this.loginFail(data, true)
-      }
-    }
-  })
+        this.loginFail(data, true);
+      },
+    },
+  });
 }

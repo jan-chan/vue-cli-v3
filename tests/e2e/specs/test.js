@@ -2,21 +2,21 @@
 
 describe('Home page title Test', () => {
   it('Visits on Home page', () => {
-    cy.visit('/')
-    cy.title().should('eq', 'v3')
-  })
-})
+    cy.visit('/');
+    cy.title().should('eq', 'v3');
+  });
+});
 
 describe('Home page MessageBox Test', () => {
   it('Visits on Home page', () => {
-    cy.visit('/')
-    cy.contains('h1', "I'm a message box")
-  })
-})
+    cy.visit('/');
+    cy.contains('h1', "I'm a message box");
+  });
+});
 
 describe('Home page data Test', () => {
   it('Visits on Home page', () => {
-    cy.visit('/')
-    cy.contains('#debugId', "1234")
-  })
-})
+    cy.visit('/');
+    cy.contains('#debugId', '1234');
+  });
+});

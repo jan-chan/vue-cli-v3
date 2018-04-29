@@ -17,35 +17,38 @@
 </template>
 
 <script>
-import { createLib } from '@/libs/login'
+import { createLib } from '@/libs/login';
 export default {
   name: 'login',
-  data () {
+  data() {
     return {
       username: '',
       password: '',
       err_username: false,
-      err_password: false
-    }
+      err_password: false,
+    };
   },
   methods: {
     login() {
-      if ((this.username !== '') && (this.password !== '')) {
+      if (this.username !== '' && this.password !== '') {
         // require('@/libs/login').createLib(this).login({ username: this.username, password: this.password })
-        createLib(this).login({ username: this.username, password: this.password, redirect: this.$route.query.redirect })
+        createLib(this).login({
+          username: this.username,
+          password: this.password,
+          redirect: this.$route.query.redirect,
+        });
       } else {
-        this.err_username = (this.username === '')
-        this.err_password = (this.password === '')
+        this.err_username = this.username === '';
+        this.err_password = this.password === '';
       }
     },
     onFocus(field) {
       if (this['err_' + field] === true) {
-        this['err_' + field] = false
+        this['err_' + field] = false;
       }
-    }
+    },
   },
-  mounted() {
-  }
+  mounted() {},
 };
 </script>
 

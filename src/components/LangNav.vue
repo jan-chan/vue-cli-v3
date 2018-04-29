@@ -12,14 +12,14 @@ export default {
   computed: {
     activeLang() {
       return this.$store.getters['app/activeLang'];
-    }
+    },
   },
   methods: {
     setLang(lang) {
-      this.$i18n.locale = lang
-      this.$store.dispatch('app/setLang', { lang: lang })
-    }
-  }
+      this.$i18n.locale = lang;
+      this.$store.dispatch('app/setLang', { lang: lang });
+    },
+  },
 };
 </script>
 

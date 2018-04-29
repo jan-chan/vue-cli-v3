@@ -17,9 +17,9 @@
 
 <script>
 export default {
-  name: "top-nav",
+  name: 'top-nav',
   components: {
-    'lang-nav': () => import ('@/components/LangNav')
+    'lang-nav': () => import('@/components/LangNav'),
   },
   computed: {
     loggedIn() {
@@ -27,14 +27,13 @@ export default {
     },
     memberName() {
       return this.$store.getters['member/name'];
-    }
+    },
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
     console.log(this.getApp().debugId);
     console.log(this.getApp().$refs.debugId);
-  }
+  },
 };
 </script>
 

@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import moduleApp from './app.module'
-import moduleMember from './member.module'
+import moduleApp from './app.module';
+import moduleMember from './member.module';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export function createStore() {
   return new Vuex.Store({
@@ -12,13 +12,13 @@ export function createStore() {
       rootTest: false,
     },
     getters: {
-      rootTest: state => {
-        return state.rootTest
+      rootTest: (state) => {
+        return state.rootTest;
       },
     },
     modules: {
       app: moduleApp,
       member: moduleMember,
-    }
-  })
+    },
+  });
 }

@@ -2,42 +2,42 @@ export const MEMBERS = [
   {
     username: 'admin',
     password: 'password',
-    name: 'ADMIN'
+    name: 'ADMIN',
   },
   {
     username: 'test',
     password: 'test',
-    name: 'Tester'
+    name: 'Tester',
   },
   {
     username: 'john',
     password: 'doe',
-    name: 'John Doe'
-  }
-]
+    name: 'John Doe',
+  },
+];
 //
 export function login(data, callbackOk, callbackFail) {
-  let member = MEMBERS.find(x => x.username === data.username)
-  if ((member !== undefined) && (member.password === data.password)) {
-    callbackOk(data)
+  let member = MEMBERS.find((x) => x.username === data.username);
+  if (member !== undefined && member.password === data.password) {
+    callbackOk(data);
   } else {
-    callbackFail(data)
+    callbackFail(data);
   }
 }
 export function logout(data, callbackOk, callbackFail) {
   // eslint-disable-next-line
   if (true) {
-    callbackOk(data)
+    callbackOk(data);
   } else {
-    callbackFail(data)
+    callbackFail(data);
   }
 }
 export function getInfo(data, callbackOk, callbackFail) {
-  let member = MEMBERS.find(x => x.username === data.username)
+  let member = MEMBERS.find((x) => x.username === data.username);
   if (member !== undefined) {
     delete member['password'];
-    callbackOk(member)
+    callbackOk(member);
   } else {
-    callbackFail(data)
+    callbackFail(data);
   }
 }

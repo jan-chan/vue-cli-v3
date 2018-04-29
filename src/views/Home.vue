@@ -9,7 +9,7 @@
 export default {
   name: 'home',
   components: {
-    'message-box': () => import('@/components/MessageBox')
-  }
+    'message-box': () => import('@/components/MessageBox'),
+  },
 };
 </script>
