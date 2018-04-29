@@ -1,21 +1,15 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe('Home page title Test', () => {
-  it('Visits on Home page', () => {
+describe('Home page Test', () => {
+  it('title', () => {
     cy.visit('/');
     cy.title().should('eq', 'v3');
   });
-});
-
-describe('Home page MessageBox Test', () => {
-  it('Visits on Home page', () => {
+  it('h1', () => {
     cy.visit('/');
     cy.contains('h1', "I'm a message box");
   });
-});
-
-describe('Home page data Test', () => {
-  it('Visits on Home page', () => {
+  it('debugId', () => {
     cy.visit('/');
     cy.contains('#debugId', '1234');
   });

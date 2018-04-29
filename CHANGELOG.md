@@ -3,6 +3,7 @@
 * Update @vue/cli to 3.0.0-beta.9
 * Use Prettier for lint
 * Try route test on About page
+* Update e2e setting
 
 ## 2018-04-27
 
