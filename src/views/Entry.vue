@@ -2,32 +2,17 @@
 <div class="view" id="view-entry">
   <section>
     <div class="container">
-      <div id="datepicker"></div>
-
-      <div id="type-tab">
-        <div class="tabs is-toggle is-centered">
-          <ul>
-            <li data='expense' :class="{'is-active': this.currentType === 'expense' }" @click="selectType">
-              <a>
-                <span>Expense</span>
-              </a>
-            </li>
-            <li data='income' :class="{'is-active': this.currentType === 'income' }" @click="selectType">
-              <a>
-                <span>Income</span>
-              </a>
-            </li>
-            <li data='transfer' :class="{'is-active': this.currentType === 'transfer' }" @click="selectType">
-              <a>
-                <span>Transfer</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="notification is-primary">
+        <pre>{{ $data }}</pre>
       </div>
 
-      <div id="amount-input"></div>
-      <div id="category-select"></div>
+      <div id="datepicker"></div>
+
+      <amount-input :currentAmount="currentAmount" @setAmount="setAmount" />
+      <type-picker :currentType="currentType" @selectType="selectType" />
+      <!-- <category-picker v-bind="currentSelection" @selectCategory="selectCategory" /> -->
+      <category-picker :currentType="currentType" :currentCategory="currentCategory"  @selectCategory="selectCategory" />
+
       <div id="payer-payee"></div>
       <div id="note-input"></div>
     </div>
@@ -40,10 +25,15 @@ export default {
   name: 'view-entry',
   components: {
     'lang-nav': () => import('@/components/LangNav'),
+    'type-picker': () => import('@/components/TypePicker'),
+    'category-picker': () => import('@/components/CategoryPicker'),
+    'amount-input': () => import('@/components/AmountInput'),
   },
   data() {
     return {
       currentType: 'expense',
+      currentCategory: '',
+      currentAmount: 0,
     };
   },
   computed: {
@@ -53,10 +43,24 @@ export default {
     memberName() {
       return this.$store.getters['member/name'];
     },
+    currentSelection() {
+      // return this.$data;
+      return {
+        currentType: this.currentType,
+        currentCategory: this.currentCategory,
+      };
+    },
   },
   methods: {
-    selectType(e) {
-      this.currentType = e.currentTarget.getAttribute('data');
+    selectType(type) {
+      this.currentType = type;
+      this.currentCategory = '';
+    },
+    selectCategory(category) {
+      this.currentCategory = category;
+    },
+    setAmount(amount) {
+      this.currentAmount = amount === '' ? 0 : amount;
     },
   },
   mounted() {},

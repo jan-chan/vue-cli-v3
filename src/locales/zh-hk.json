@@ -12,6 +12,31 @@
     "please-login": "請先登錄",
     "close": "關閉"
   },
+  "type": {
+    "title": {
+      "expense": "Expense",
+      "income": "Income",
+      "transfer": "Transfer"
+    }
+  },
+  "category" : {
+    "expense" : {
+      "title": {
+        "transport": "Transport",
+        "food": "Food"
+      }
+    },
+      "income" : {
+        "title": {
+          "salary": "Salary"
+        }
+      },
+        "transfer" : {
+          "title": {
+            "transfer": "Transfer"
+          }
+        }
+  },
   "side-menu": {
     "section": {
       "content": "內容",
