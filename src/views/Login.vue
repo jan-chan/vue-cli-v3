@@ -1,18 +1,43 @@
 <template>
 <div class="view" id="view-login">
-  <ul>
-    <li>
-      <div class="field-icon">
-        <i class="material-icons">account_circle</i>
-      </div><input v-model.trim="username" @focus="onFocus('username')" :placeholder="$t('signin.username')" :class="{'error': err_username}">
-    </li>
-    <li>
-      <div class="field-icon">
-        <i class="material-icons">lock</i>
-      </div><input v-model.trim="password" @focus="onFocus('password')" :placeholder="$t('signin.password')" :class="{'error': err_password}" type="password">
-    </li>
-  </ul>
-  <div class="button" id="button-login" @click="login">{{ $t("signin.login") }}</div>
+  <section>
+    <div class="container">
+      <div class="columns is-centered">
+        <article class="card is-rounded">
+          <form @submit.prevent="login">
+            <div class="card-content">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" v-model.trim="username" @focus="onFocus('username')" :placeholder="$t('signin.username')" :class="{'is-danger': err_username}">
+                  <span class="icon is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" v-model.trim="password" @focus="onFocus('password')" :placeholder="$t('signin.password')" :class="{'is-danger': err_password}" type="password">
+                  <span class="icon is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <p class="control">
+                <label class="checkbox">
+                  <input type="checkbox"> Remember me
+                </label>
+              </p>
+              <p class="control">
+                <button type="submit" class="button is-primary is-fullwidth" id="button-login" @click="login">
+                  {{ $t("signin.login") }}&nbsp;<i class="fa fa-sign-in-alt"></i>
+                </button>
+              </p>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </section>
 </div>
 </template>
 
@@ -52,48 +77,6 @@ export default {
 };
 </script>
 
-
 <style scoped lang="scss">
 @import '~@/assets/styles/vars.scss';
-
-.button {
-  background-color: $main-color;
-  display: inline-block;
-  padding: 8px 15px;
-  color: #fff;
-  font-size: 25px;
-  font-weight: bold;
-}
-ul {
-  margin: auto;
-}
-li {
-  @extend %parentbox;
-  margin: 20px;
-  > * {
-    @extend %childbox;
-    display: inline-block;
-  }
-  .field-icon {
-    margin-right: 5px;
-  }
-  i {
-    font-size: 35px;
-    color: $main-color;
-  }
-  input {
-    font-size: 18px;
-    width: 200px;
-    padding: 5px;
-    margin: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent;
-    border-bottom-color: #000;
-  }
-  input.error {
-    border-color: red;
-    color: red;
-  }
-}
 </style>

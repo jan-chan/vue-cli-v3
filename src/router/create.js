@@ -9,6 +9,7 @@ export function createRouter({ ...Components }) {
     scrollBehavior: () => ({
       y: 0,
     }),
+    linkActiveClass : 'is-active',
     routes: [
       {
         path: '/',
@@ -29,6 +30,11 @@ export function createRouter({ ...Components }) {
         path: '/logout',
         name: 'logout',
         component: () => import('@/views/Logout'),
+      },
+      {
+        path: '/entry',
+        name: 'entry',
+        component: () => import('@/views/Entry'),
       },
       {
         path: '/about',

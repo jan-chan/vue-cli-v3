@@ -1,3 +1,9 @@
+## 2018-05-03
+
+* Use Bulma
+* Update App.vue and Login.vue based on Bulma
+* Create SideMenu and Entry
+
 ## 2018-04-29
 
 * Update @vue/cli to 3.0.0-beta.9

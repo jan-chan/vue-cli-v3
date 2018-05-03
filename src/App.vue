@@ -1,8 +1,18 @@
 <template>
 <div id="app">
-  <div id="debugId" ref="debugId" v-show="false">{{ debugId }}</div>
-  <top-nav/>
-  <router-view/>
+  <section class="section">
+    <div class="container">
+      <div id="debugId" ref="debugId" v-show="false">{{ debugId }}</div>
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <side-menu/>
+        </div>
+        <div class="column">
+          <router-view/>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 </template>
 
@@ -15,7 +25,7 @@ export default {
     };
   },
   components: {
-    'top-nav': () => import('@/components/TopNav'),
+    'side-menu': () => import('@/components/SideMenu'),
   },
   created() {
     this.$i18n.locale = this.$store.getters['app/activeLang'];
@@ -41,10 +51,6 @@ $variable-name: red;
 @import '~@/assets/styles/vars.scss';
 
 #app {
-  font-family: 'Avenir', 'Helvetica', 'Arial', 'sans-serif';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: $main-color;
 }
 </style>

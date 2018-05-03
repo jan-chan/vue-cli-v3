@@ -1,17 +1,10 @@
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-
 html {
   touch-action: manipulation;
 }
-*, :after, :before {
-  box-sizing: content-box;
-}
 body, html {
   font-family: 'Arial', 'Microsoft JhengHei', 'Apple LiGothic', 'PMingLiU', 'Heiti';
-  font-size: 14px;
 }
 body {
-  margin: 0px;
   min-height: 100vh;
 
   user-select: none;
@@ -24,10 +17,10 @@ body.noscroll {
   overflow: hidden;
 }
 
+/* by Bulma
 a {
   text-decoration: none;
 }
-
 input, select, textarea {
   outline: none;
   border-radius: 0px;
@@ -38,6 +31,8 @@ ul {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 }
+*/
+
 .parentbox {
   text-align: center;
   /* remove the gap between inline(-block) elements */
