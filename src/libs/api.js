@@ -27,11 +27,12 @@ export function callApi(type, method, data, callbackOk, callbackFail) {
   let prom = type === 'post' ? postData : getData;
   prom(method, data)
     .then(function(response) {
-      let res = response.data;
-      if (res.statusCode === 1) {
-        callbackOk(res.data);
+      let data = response.data;
+      let status = response.status;
+      if (status === 200 || status === 201 || status === 204) {
+        callbackOk(data);
       } else {
-        callbackFail(res.data);
+        callbackFail(data);
       }
     })
     .catch(function(error) {
