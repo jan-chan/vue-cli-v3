@@ -1,3 +1,9 @@
+## 2018-05-04
+
+* Set Eng as deafult language
+* Add translation
+* Update layout of Login and Entry
+
 ## 2018-05-03
 
 * Use Bulma

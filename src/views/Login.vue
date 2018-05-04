@@ -1,43 +1,37 @@
 <template>
-<div class="view" id="view-login">
-  <section>
-    <div class="container">
-      <div class="columns is-centered">
-        <article class="card is-rounded">
-          <form @submit.prevent="login">
-            <div class="card-content">
-              <div class="field">
-                <p class="control has-icons-left">
-                  <input class="input" v-model.trim="username" @focus="onFocus('username')" :placeholder="$t('signin.username')" :class="{'is-danger': err_username}">
-                  <span class="icon is-left">
-                    <i class="fas fa-user"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control has-icons-left">
-                  <input class="input" v-model.trim="password" @focus="onFocus('password')" :placeholder="$t('signin.password')" :class="{'is-danger': err_password}" type="password">
-                  <span class="icon is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
-                </p>
-              </div>
-              <p class="control">
-                <label class="checkbox">
-                  <input type="checkbox"> Remember me
-                </label>
-              </p>
-              <p class="control">
-                <button type="submit" class="button is-primary is-fullwidth" id="button-login" @click="login">
-                  {{ $t("signin.login") }}&nbsp;<i class="fa fa-sign-in-alt"></i>
-                </button>
-              </p>
-            </div>
-          </form>
-        </article>
-      </div>
+<div class="view columns is-centered" id="view-login">
+  <article class="card is-rounded">
+    <div class="card-content">
+      <form @submit.prevent="login">
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" v-model.trim="username" @focus="onFocus('username')" :placeholder="$t('signin.username')" :class="{'is-danger': err_username}">
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" v-model.trim="password" @focus="onFocus('password')" :placeholder="$t('signin.password')" :class="{'is-danger': err_password}" type="password">
+            <span class="icon is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        <p class="control">
+          <label class="checkbox">
+            <input type="checkbox"> Remember me
+          </label>
+        </p>
+        <p class="control">
+          <button type="submit" class="button is-primary is-fullwidth">
+            {{ $t("signin.login") }}&nbsp;<i class="fa fa-sign-in-alt"></i>
+          </button>
+        </p>
+      </form>
     </div>
-  </section>
+  </article>
 </div>
 </template>
 

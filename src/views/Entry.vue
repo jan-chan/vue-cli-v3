@@ -1,23 +1,25 @@
 <template>
-<div class="view" id="view-entry">
-  <section>
-    <div class="container">
-      <div class="notification is-primary">
-        <pre>{{ $data }}</pre>
-      </div>
+<section class="view" id="view-entry">
+  <div class="notification is-primary">
+    <pre>{{ $data }}</pre>
+  </div>
 
-      <div id="datepicker"></div>
+  <div id="datepicker"></div>
 
-      <amount-input :currentAmount="currentAmount" @setAmount="setAmount" />
-      <type-picker :currentType="currentType" @selectType="selectType" />
-      <!-- <category-picker v-bind="currentSelection" @selectCategory="selectCategory" /> -->
-      <category-picker :currentType="currentType" :currentCategory="currentCategory"  @selectCategory="selectCategory" />
+  <amount-input :currentAmount="currentAmount" @setAmount="setAmount" />
+  <type-picker :currentType="currentType" @selectType="selectType" />
+  <!-- <category-picker v-bind="currentSelection" @selectCategory="selectCategory" /> -->
+  <category-picker :currentType="currentType" :currentCategory="currentCategory"  @selectCategory="selectCategory" />
 
-      <div id="payer-payee"></div>
-      <div id="note-input"></div>
-    </div>
-  </section>
-</div>
+  <div id="payer-payee"></div>
+  <div id="note-input"></div>
+
+  <div class="control">
+    <button class="button is-primary is-fullwidth" @click="save">
+      Save &nbsp;<i class="far fa-save"></i>
+    </button>
+  </div>
+</section>
 </template>
 
 <script>
@@ -62,6 +64,9 @@ export default {
     setAmount(amount) {
       this.currentAmount = amount === '' ? 0 : amount;
     },
+    save() {
+      console.log(this.$data);
+    }
   },
   mounted() {},
 };
