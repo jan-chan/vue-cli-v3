@@ -8,7 +8,7 @@ Vue.use(VueI18n);
 export function createLocale() {
   return new VueI18n({
     locale: '',
-    fallbackLocale: 'hk',
+    fallbackLocale: 'en',
     messages: {
       // 2 ways to load json
       hk: hk,

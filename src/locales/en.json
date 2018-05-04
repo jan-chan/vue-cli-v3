@@ -12,6 +12,31 @@
     "please-login": "Please log in first",
     "close": "Close"
   },
+  "type": {
+    "title": {
+      "expense": "Expense",
+      "income": "Income",
+      "transfer": "Transfer"
+    }
+  },
+  "category" : {
+    "expense" : {
+      "title": {
+        "transport": "Transport",
+        "food": "Food"
+      }
+    },
+      "income" : {
+        "title": {
+          "salary": "Salary"
+        }
+      },
+        "transfer" : {
+          "title": {
+            "transfer": "Transfer"
+          }
+        }
+  },
   "side-menu": {
     "section": {
       "content": "Content",
