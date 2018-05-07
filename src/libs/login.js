@@ -2,8 +2,11 @@ import Vue from 'vue';
 import * as api from '@/libs/member';
 
 export function checkLogin(app, to, from, next) {
-  let auth = ((app.$children.length !== 0) && (app.$children[0].$store.getters['app/loggedIn'])) ? true : false;
-  if (to.matched.some((record) => record.meta.requiresAuth) && !auth) {
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    (app.$children.length === 0 ||
+      !app.$children[0].$store.getters['app/loggedIn'])
+  ) {
     next({
       path: '/login',
       query: {

@@ -1,3 +1,7 @@
+## 2018-05-07
+
+* Update global guards of route: check login status
+
 ## 2018-05-04
 
 * Set Eng as deafult language
