@@ -11,8 +11,8 @@ export default {
   name: 'amount-input',
   data() {
     return {
-      editAmount: 0
-    }
+      editAmount: 0,
+    };
   },
   props: ['currentAmount'],
   methods: {
@@ -21,7 +21,7 @@ export default {
     },
   },
   mounted() {
-    this.editAmount = this.currentAmount
+    this.editAmount = this.currentAmount;
   },
 };
 </script>

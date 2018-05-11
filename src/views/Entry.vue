@@ -65,8 +65,8 @@ export default {
       this.currentAmount = amount === '' ? 0 : amount;
     },
     save() {
-      console.log(this.$data);
-    }
+      // console.log(this.$data);
+    },
   },
   mounted() {},
 };
