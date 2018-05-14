@@ -28,7 +28,7 @@ export function callApi(type, method, data, callbackOk, callbackFail) {
   prom(method, data)
     .then(function(response) {
       let data = response.data;
-      let status = response.status;
+      let status = data.status;
       if (status === 200 || status === 201 || status === 204) {
         callbackOk(data);
       } else {
@@ -36,8 +36,14 @@ export function callApi(type, method, data, callbackOk, callbackFail) {
       }
     })
     .catch(function(error) {
-      console.log('error @ ' + method);
-      console.log(error);
+      // console.log('error @ ' + method);
+      // console.log(error);
+      if (error.response) {
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      }
+      callbackFail(error);
     });
 }
 export function callPost(method, data, callbackOk, callbackFail) {

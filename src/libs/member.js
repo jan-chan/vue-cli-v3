@@ -6,7 +6,7 @@ export function login(data, callbackOk, callbackFail) {
   if (process.env.VUE_APP_DUMMY_DATA === 'true') {
     dummy.login(data, callbackOk, callbackFail);
   } else {
-    api.callPost('member/login', data, callbackOk, callbackFail);
+    api.callPost('/api/login', data, callbackOk, callbackFail);
   }
 }
 export function logout(data, callbackOk, callbackFail) {
