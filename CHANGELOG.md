@@ -1,3 +1,12 @@
+## 2018-05-18
+
+* Update API library
+* Update login workflow
+
+## 2018-05-11
+
+* Update @vue/cli to 3.0.0-beta.10
+
 ## 2018-05-07
 
 * Update global guards of route: check login status

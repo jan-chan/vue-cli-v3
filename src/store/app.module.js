@@ -3,6 +3,8 @@ export default {
   state: {
     lang: 'hk',
     login: false,
+    accessToken: '',
+    refreshToken: '',
   },
   mutations: {
     setLang: (state, { lang }) => {
@@ -10,6 +12,14 @@ export default {
     },
     setLogin: (state, { login }) => {
       state.login = login;
+    },
+    setAccessToken: (state, { token }) => {
+      localStorage.setItem('accessToken', token);
+      state.accessToken = token;
+    },
+    setRefreshToken: (state, { token }) => {
+      localStorage.setItem('refreshToken', token);
+      state.refreshToken = token;
     },
   },
   actions: {
@@ -21,6 +31,17 @@ export default {
     setLogin: ({ commit }, { login }) => {
       commit('setLogin', { login });
     },
+    setAccessToken: ({ commit }, { token }) => {
+      commit('setAccessToken', { token });
+    },
+    setRefreshToken: ({ commit }, { token }) => {
+      commit('setRefreshToken', { token });
+    },
+    logout: ({ commit }) => {
+      commit('setLogin', { login: false });
+      commit('setAccessToken', { token: '' });
+      commit('setRefreshToken', { token: '' });
+    },
   },
   getters: {
     activeLang: (state, getters, rootState, rootGetters) => {
@@ -30,6 +51,12 @@ export default {
     },
     loggedIn: (state) => {
       return state.login;
+    },
+    accessToken: (state) => {
+      return state.accessToken;
+    },
+    refreshToken: (state) => {
+      return state.refreshToken;
     },
   },
 };

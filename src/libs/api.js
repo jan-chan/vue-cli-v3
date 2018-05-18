@@ -1,54 +1,67 @@
 import axios from 'axios';
-
-export const HTTP = axios.create({
+import * as utils from '@/libs/utils';
+//
+const defaultConfig = {
   baseURL: process.env.VUE_APP_API_BASE,
-  timeout: 30000,
+  timeout: 10000,
   headers: {
+    'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   },
-  withCredentials: true,
-});
-
-export default HTTP;
-
-export function formatData(data) {
-  let qs = require('qs');
-  return qs.stringify(data);
-}
-
-export function postData(method, data) {
-  return HTTP.post(method, formatData(data));
-}
-export function getData(method, data) {
-  return HTTP.get(method, { params: data });
-}
-
-export function callApi(type, method, data, callbackOk, callbackFail) {
-  let prom = type === 'post' ? postData : getData;
-  prom(method, data)
-    .then(function(response) {
-      let data = response.data;
-      let status = data.status;
-      if (status === 200 || status === 201 || status === 204) {
-        callbackOk(data);
-      } else {
-        callbackFail(data);
+  // withCredentials: true,
+};
+//
+export function call(info) {
+  let method = info.method || 'get';
+  let data = info.data || null;
+  //
+  switch (method) {
+    case 'post':
+    case 'put':
+    case 'patch':
+      data = formatData(data);
+      break;
+  }
+  //
+  createInstance(info.config, info.auth)
+    [method](info.url, data)
+    .then((response) => {
+      if (info.callbackOk) {
+        info.callbackOk(response.data);
       }
     })
-    .catch(function(error) {
-      // console.log('error @ ' + method);
-      // console.log(error);
-      if (error.response) {
-        // console.log(error.response.data);
-        // console.log(error.response.status);
-        // console.log(error.response.headers);
+    .catch((error) => {
+      if (info.callbackFail) {
+        console.log('error @ ' + method + ' : ' + info.url);
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
+        info.callbackFail(error);
       }
-      callbackFail(error);
     });
 }
-export function callPost(method, data, callbackOk, callbackFail) {
-  callApi('post', method, data, callbackOk, callbackFail);
+export function createInstance(customConfig, auth = true) {
+  let authConfig;
+  if (localStorage.getItem('accessToken') && auth !== false) {
+    authConfig = {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+      },
+    };
+  }
+  return axios.create(
+    utils.deepmergeAll([defaultConfig, customConfig, authConfig])
+  );
 }
-export function callGet(method, data, callbackOk, callbackFail) {
-  callApi('get', method, data, callbackOk, callbackFail);
+export function getDefaultConfig() {
+  return defaultConfig;
+}
+//
+function formatData(data) {
+  let qs = require('qs');
+  return qs.stringify(data);
 }

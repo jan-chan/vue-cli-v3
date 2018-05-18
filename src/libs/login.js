@@ -44,9 +44,13 @@ export function createLib(owner) {
       loginOk(data, auto) {
         console.log('loginOk');
         this.owner.$store.dispatch('app/setLogin', { login: true }).then(() => {
-          api.getInfo(data, this.setMemberInfo, function(data) {
-            console.log(data);
+          this.owner.$store.dispatch('app/setAccessToken', {
+            token: data.tokens.access_token,
           });
+          this.owner.$store.dispatch('app/setRefreshToken', {
+            token: data.tokens.refresh_token,
+          });
+          this.setMemberInfo(data.user);
           if (!auto) {
             this.owner.$router.push(data.redirect || '/');
           }
@@ -63,7 +67,7 @@ export function createLib(owner) {
       logoutOk(data) {
         console.log('logoutOk');
         console.log(data);
-        this.owner.$store.dispatch('app/setLogin', { login: false });
+        this.owner.$store.dispatch('app/logout');
         this.owner.$store.dispatch('member/clearInfo');
         this.owner.$router.push('/');
       },
