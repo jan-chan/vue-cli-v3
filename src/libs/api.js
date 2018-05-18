@@ -3,28 +3,34 @@ import * as utils from '@/libs/utils';
 //
 const defaultConfig = {
   baseURL: process.env.VUE_APP_API_BASE,
-  timeout: 10000,
+  // timeout: 10000,
+  // withCredentials: true,
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   },
-  // withCredentials: true,
+  noAccessToken: false,
 };
 //
-export function call(info) {
-  let method = info.method || 'get';
-  let data = info.data || null;
+export function call(info = {}) {
+  let config = { ...info };
   //
-  switch (method) {
+  switch (config.method) {
     case 'post':
     case 'put':
     case 'patch':
-      data = formatData(data);
+      config.data = formatData(config.data);
+      break;
+    case 'get':
+    case undefined:
+      config.data ? (config.url += '?' + formatData(config.data)) : null;
       break;
   }
   //
-  createInstance(info.config, info.auth)
-    [method](info.url, data)
+  delete config.callbackFail;
+  delete config.callbackOk;
+  //
+  axios(getConfig(config))
     .then((response) => {
       if (info.callbackOk) {
         info.callbackOk(response.data);
@@ -32,30 +38,21 @@ export function call(info) {
     })
     .catch((error) => {
       if (info.callbackFail) {
-        console.log('error @ ' + method + ' : ' + info.url);
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);
-        }
         info.callbackFail(error);
       }
     });
 }
-export function createInstance(customConfig, auth = true) {
-  let authConfig;
-  if (localStorage.getItem('accessToken') && auth !== false) {
-    authConfig = {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
+export function createInstance(customConfig = {}) {
+  return axios.create(getConfig(customConfig || {}));
+}
+export function getConfig(customConfig = {}) {
+  let authConfig = {};
+  if (!customConfig.noAccessToken && localStorage.getItem('accessToken')) {
+    authConfig.headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
     };
   }
-  return axios.create(
-    utils.deepmergeAll([defaultConfig, customConfig, authConfig])
-  );
+  return utils.deepmergeAll([defaultConfig, customConfig, authConfig]);
 }
 export function getDefaultConfig() {
   return defaultConfig;

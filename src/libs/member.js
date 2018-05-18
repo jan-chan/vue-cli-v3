@@ -12,7 +12,7 @@ export function login(data, callbackOk, callbackFail) {
       url: '/api/login',
       callbackOk: callbackOk,
       callbackFail: callbackFail,
-      auth: false,
+      noAccessToken: true,
     });
   }
 }
@@ -26,7 +26,6 @@ export function logout(data, callbackOk, callbackFail) {
       url: '/api/logout',
       callbackOk: callbackOk,
       callbackFail: callbackFail,
-      auth: false,
     });
   }
 }
