@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import * as api from '@/libs/member';
 
-export function checkLogin(app, to, from, next) {
+export function check(app, to, from, next) {
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&
     (app.$children.length === 0 ||
@@ -18,7 +18,7 @@ export function checkLogin(app, to, from, next) {
   next();
 }
 //
-export function createLib(owner) {
+export function create(owner) {
   return new Vue({
     data() {
       return {
@@ -26,31 +26,28 @@ export function createLib(owner) {
       };
     },
     methods: {
-      setMemberInfo(data) {
-        console.log('setMemberInfo');
-        this.owner.$store.dispatch('member/setInfo', data);
-      },
-      //
       login(data, auto) {
-        api.login(
-          data,
-          auto ? this.loginOkAuto : this.loginOk,
-          auto ? this.loginFailAuto : this.loginFail
-        );
+        api.login({
+          data: data,
+          callbackOk: auto ? this.loginOkAuto : this.loginOk,
+          callbackFail: auto ? this.loginFailAuto : this.loginFail,
+        });
       },
       logout() {
-        api.logout({}, this.logoutOk, this.logoutFail);
+        api.logout({
+          callbackOk: this.logoutOk,
+          callbackFail: this.logoutFail,
+        });
       },
       loginOk(data, auto) {
         console.log('loginOk');
-        this.owner.$store.dispatch('app/setLogin', { login: true }).then(() => {
-          this.owner.$store.dispatch('app/setAccessToken', {
-            token: data.tokens.access_token,
-          });
-          this.owner.$store.dispatch('app/setRefreshToken', {
-            token: data.tokens.refresh_token,
-          });
-          this.setMemberInfo(data.user);
+        this.owner.$store.dispatch('app/setLogin', true);
+        this.owner.$store.dispatch('app/setTokens', {
+          accessToken: data.tokens.access_token,
+          refreshToken: data.tokens.refresh_token,
+        });
+        // After set member info, redirect, if needed,
+        this.owner.$store.dispatch('member/setInfo', data.user).then(() => {
           if (!auto) {
             this.owner.$router.push(data.redirect || '/');
           }
@@ -68,8 +65,10 @@ export function createLib(owner) {
         console.log('logoutOk');
         console.log(data);
         this.owner.$store.dispatch('app/logout');
-        this.owner.$store.dispatch('member/clearInfo');
-        this.owner.$router.push('/');
+        // After clear member info, redirect to home
+        this.owner.$store.dispatch('member/clearInfo').then(() => {
+          this.owner.$router.push('/');
+        });
       },
       logoutFail(data) {
         console.log('logoutFail');

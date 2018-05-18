@@ -4,7 +4,7 @@ import { createRouter } from './router/create';
 import { createStore } from './store/create';
 import { sync } from 'vuex-router-sync';
 
-import { checkLogin } from '@/libs/login';
+import { check as checkLogin } from '@/libs/login';
 // import { createLocale } from '@/plugins/i18n'
 
 export function createApp() {

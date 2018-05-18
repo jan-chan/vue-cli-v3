@@ -5,27 +5,27 @@ export default {
     name: 'guest',
   },
   mutations: {
-    setName: (state, { name }) => {
+    setName: (state, name) => {
       state.name = name;
     },
-    setUsername: (state, { username }) => {
+    setUsername: (state, username) => {
       state.username = username;
     },
   },
   actions: {
     setInfo: ({ commit }, { username, name }) => {
-      commit('setName', { name });
-      commit('setUsername', { username });
+      commit('setName', name);
+      commit('setUsername', username);
     },
     clearInfo: ({ commit }) => {
-      commit('setName', { name: 'guest' });
-      commit('setUsername', { username: '' });
+      commit('setName', 'guest');
+      commit('setUsername', '');
     },
-    setName: ({ commit }, { name }) => {
-      commit('setName', { name });
+    setName: ({ commit }, name) => {
+      commit('setName', name);
     },
-    setUsername: ({ commit }, { username }) => {
-      commit('setUsername', { username });
+    setUsername: ({ commit }, username) => {
+      commit('setUsername', username);
     },
   },
   getters: {

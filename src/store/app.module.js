@@ -7,40 +7,44 @@ export default {
     refreshToken: '',
   },
   mutations: {
-    setLang: (state, { lang }) => {
+    setLang: (state, lang) => {
       state.lang = lang;
     },
-    setLogin: (state, { login }) => {
+    setLogin: (state, login) => {
       state.login = login;
     },
-    setAccessToken: (state, { token }) => {
+    setAccessToken: (state, token) => {
       localStorage.setItem('accessToken', token);
       state.accessToken = token;
     },
-    setRefreshToken: (state, { token }) => {
+    setRefreshToken: (state, token) => {
       localStorage.setItem('refreshToken', token);
       state.refreshToken = token;
     },
   },
   actions: {
-    setLang: ({ commit, state }, { lang }) => {
+    setLang: ({ commit, state }, lang) => {
       // eslint-disable-next-line
       false ? state : null;
-      commit('setLang', { lang });
+      commit('setLang', lang);
     },
-    setLogin: ({ commit }, { login }) => {
-      commit('setLogin', { login });
+    setLogin: ({ commit }, login) => {
+      commit('setLogin', login);
     },
-    setAccessToken: ({ commit }, { token }) => {
-      commit('setAccessToken', { token });
+    setTokens: ({ commit }, { accessToken, refreshToken }) => {
+      commit('setAccessToken', accessToken);
+      commit('setRefreshToken', refreshToken);
     },
-    setRefreshToken: ({ commit }, { token }) => {
-      commit('setRefreshToken', { token });
+    setAccessToken: ({ commit }, token) => {
+      commit('setAccessToken', token);
+    },
+    setRefreshToken: ({ commit }, token) => {
+      commit('setRefreshToken', token);
     },
     logout: ({ commit }) => {
-      commit('setLogin', { login: false });
-      commit('setAccessToken', { token: '' });
-      commit('setRefreshToken', { token: '' });
+      commit('setLogin', false);
+      commit('setAccessToken', '');
+      commit('setRefreshToken', '');
     },
   },
   getters: {

@@ -23,7 +23,9 @@ export function call(info = {}) {
       break;
     case 'get':
     case undefined:
-      config.data ? (config.url += '?' + formatData(config.data)) : null;
+      if (config.data) {
+        config.url += '?' + formatData(config.data);
+      }
       break;
   }
   //
@@ -59,6 +61,5 @@ export function getDefaultConfig() {
 }
 //
 function formatData(data) {
-  let qs = require('qs');
-  return qs.stringify(data);
+  return require('qs').stringify(data);
 }

@@ -2,6 +2,7 @@
 
 * Update API library
 * Update login workflow
+* Rewrite Vuex modules
 
 ## 2018-05-11
 

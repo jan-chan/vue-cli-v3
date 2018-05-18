@@ -1,43 +1,23 @@
 import * as api from '@/libs/api';
 
-import * as dummy from '@/dummy/member';
-
-export function login(data, callbackOk, callbackFail) {
-  if (process.env.VUE_APP_DUMMY_DATA === 'true') {
-    dummy.login(data, callbackOk, callbackFail);
-  } else {
-    api.call({
-      method: 'post',
-      data: data,
-      url: '/api/login',
-      callbackOk: callbackOk,
-      callbackFail: callbackFail,
-      noAccessToken: true,
-    });
-  }
+export function login(info) {
+  api.call({
+    url: '/api/login',
+    method: 'post',
+    noAccessToken: true,
+    ...info,
+  });
 }
-export function logout(data, callbackOk, callbackFail) {
-  if (process.env.VUE_APP_DUMMY_DATA === 'true') {
-    dummy.logout(data, callbackOk, callbackFail);
-  } else {
-    api.call({
-      method: 'post',
-      data: data,
-      url: '/api/logout',
-      callbackOk: callbackOk,
-      callbackFail: callbackFail,
-    });
-  }
+export function logout(info) {
+  api.call({
+    url: '/api/logout',
+    method: 'post',
+    ...info,
+  });
 }
-export function getInfo(data, callbackOk, callbackFail) {
-  if (process.env.VUE_APP_DUMMY_DATA === 'true') {
-    dummy.getInfo(data, callbackOk, callbackFail);
-  } else {
-    api.call({
-      data: data,
-      url: '/api/user',
-      callbackOk: callbackOk,
-      callbackFail: callbackFail,
-    });
-  }
+export function getInfo(info) {
+  api.call({
+    url: '/api/user',
+    ...info,
+  });
 }

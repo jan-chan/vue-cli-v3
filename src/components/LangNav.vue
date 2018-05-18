@@ -17,7 +17,7 @@ export default {
   methods: {
     setLang(lang) {
       this.$i18n.locale = lang;
-      this.$store.dispatch('app/setLang', { lang: lang });
+      this.$store.dispatch('app/setLang', lang);
     },
   },
 };

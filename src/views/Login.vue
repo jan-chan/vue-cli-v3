@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { createLib } from '@/libs/login';
+import { create as createLibLogin } from '@/libs/login';
 export default {
   name: 'login',
   data() {
@@ -50,8 +50,7 @@ export default {
   methods: {
     login() {
       if (this.username !== '' && this.password !== '') {
-        // require('@/libs/login').createLib(this).login({ username: this.username, password: this.password })
-        createLib(this).login({
+        createLibLogin(this).login({
           username: this.username,
           password: this.password,
           redirect: this.$route.query.redirect,
@@ -67,7 +66,6 @@ export default {
       }
     },
   },
-  mounted() {},
 };
 </script>
 
