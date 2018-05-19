@@ -32,24 +32,41 @@
       </form>
     </div>
   </article>
+  <page-loader :active="showLoading" message="processing..."></page-loader>
 </div>
 </template>
 
 <script>
 import { create as createLibLogin } from '@/libs/login';
+// import * as api from '@/libs/api';
+//
 export default {
   name: 'login',
+  components: {
+    'page-loader': () => import('@/components/PageLoader'),
+  },
   data() {
     return {
       username: '',
       password: '',
       err_username: false,
       err_password: false,
+      showLoading: false,
     };
   },
   methods: {
+    formatData(data) {
+      return require('qs').stringify(data);
+    },
+    showPageLoad() {
+      this.showLoading = true;
+    },
+    hidePageLoad() {
+      this.showLoading = false;
+    },
     login() {
       if (this.username !== '' && this.password !== '') {
+        this.showPageLoad();
         createLibLogin(this).login({
           username: this.username,
           password: this.password,

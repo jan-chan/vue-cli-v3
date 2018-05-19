@@ -31,6 +31,7 @@ export function create(owner) {
           data: data,
           callbackOk: auto ? this.loginOkAuto : this.loginOk,
           callbackFail: auto ? this.loginFailAuto : this.loginFail,
+          callbackFinally: this.owner.hidePageLoad,
         });
       },
       logout() {

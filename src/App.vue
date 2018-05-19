@@ -41,6 +41,7 @@ export default {
 </style>
 
 <style lang="scss">
+@import '~@/assets/styles/main.scss';
 $variable-name: red;
 #app {
   --h1-color: #{$variable-name};
