@@ -13,6 +13,25 @@ const defaultConfig = {
 };
 //
 export function call(info = {}) {
+  createPromise(info)
+    .then((response) => {
+      if (info.callbackOk) {
+        info.callbackOk(response.data);
+      }
+      if (info.callbackFinally) {
+        info.callbackFinally(info);
+      }
+    })
+    .catch((error) => {
+      if (info.callbackFail) {
+        info.callbackFail(error);
+      }
+      if (info.callbackFinally) {
+        info.callbackFinally(info);
+      }
+    });
+}
+export function createPromise(info = {}) {
   let config = { ...info };
   //
   switch (config.method) {
@@ -32,17 +51,7 @@ export function call(info = {}) {
   delete config.callbackFail;
   delete config.callbackOk;
   //
-  axios(getConfig(config))
-    .then((response) => {
-      if (info.callbackOk) {
-        info.callbackOk(response.data);
-      }
-    })
-    .catch((error) => {
-      if (info.callbackFail) {
-        info.callbackFail(error);
-      }
-    });
+  return axios(getConfig(config));
 }
 export function createInstance(customConfig = {}) {
   return axios.create(getConfig(customConfig || {}));

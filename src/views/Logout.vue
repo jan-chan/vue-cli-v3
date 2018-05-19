@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { createLib } from '@/libs/login';
+import { create as createLib } from '@/libs/login';
 export default {
   name: 'logout',
   created() {
