@@ -36,16 +36,17 @@ export default {
 };
 </script>
 
-<style>
-@import '~@/assets/styles/common.css';
-</style>
-
 <style lang="scss">
 @import '~@/assets/styles/main.scss';
+
 $variable-name: red;
 #app {
   --h1-color: #{$variable-name};
 }
+</style>
+
+<style>
+@import '~@/assets/styles/common.css';
 </style>
 
 <style scoped lang="scss">

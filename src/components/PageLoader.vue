@@ -19,26 +19,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .pageloader {
   background-color: rgba(200, 100, 50, 0.5);
 }
@@ -48,4 +28,4 @@ export default {
 span.title {
   color: yellow;
 }
-<style>
+</style>
