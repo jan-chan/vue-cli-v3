@@ -20,10 +20,10 @@ export function check(app, to, from, next) {
 //
 export function create(owner) {
   return new Vue({
-    data() {
-      return {
-        owner: owner,
-      };
+    computed: {
+      owner() {
+        return owner;
+      },
     },
     methods: {
       login(data, auto) {
@@ -31,7 +31,7 @@ export function create(owner) {
           data: data,
           callbackOk: auto ? this.loginOkAuto : this.loginOk,
           callbackFail: auto ? this.loginFailAuto : this.loginFail,
-          callbackFinally: this.owner.endProcessing,
+          callbackFinally: auto ? null : this.owner.endProcessing,
         });
       },
       logout() {
